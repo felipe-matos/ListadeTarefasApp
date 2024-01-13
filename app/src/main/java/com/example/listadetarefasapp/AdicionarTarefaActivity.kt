@@ -14,6 +14,7 @@ class AdicionarTarefaActivity : AppCompatActivity() {
         ActivityAdicionarTarefaBinding.inflate(layoutInflater)
     }
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
