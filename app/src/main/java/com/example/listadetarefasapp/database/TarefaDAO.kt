@@ -12,7 +12,7 @@ class TarefaDAO(context : Context) : ITarefaDAO {
     override fun salvar(tarefa: Tarefa): Boolean {
 
         val conteudos = ContentValues()
-        conteudos.put("${DatabaseHelper.ID_DESCRICAO}",tarefa.descricao)
+        conteudos.put("${DatabaseHelper.ID_DESCRICAO}", tarefa.descricao)
 
         try {
 
@@ -22,7 +22,7 @@ class TarefaDAO(context : Context) : ITarefaDAO {
                 conteudos
             )
             Log.i("info_db", "Sucesso ao criar tarefa ")
-        }catch (  e:Exception){
+        } catch (e: Exception) {
             e.printStackTrace()
             Log.i("info_db", "Error ao criar tarefa ")
             return false
@@ -35,8 +35,24 @@ class TarefaDAO(context : Context) : ITarefaDAO {
     }
 
     override fun remover(idTarefa: Int): Boolean {
-        TODO("Not yet implemented")
+
+        val args = arrayOf(idTarefa.toString())
+
+        try {
+            escrita.delete(
+                DatabaseHelper.NOME_TABELA_TAREFAS,
+                "${DatabaseHelper.ID_TAREFA} = ?",
+                args
+            )
+            Log.i("info_db", "Sucesso ao remover tarefa ")
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Log.i("info_db", "Error ao remover tarefa ")
+            return false
+        }
+        return true
     }
+
 
     override fun listar(): List<Tarefa> {
 
@@ -46,13 +62,13 @@ class TarefaDAO(context : Context) : ITarefaDAO {
                 " strftime( '%d /%m /%Y  %H:%M', ${DatabaseHelper.DATA_CADASTRO}) ${DatabaseHelper.DATA_CADASTRO}" +
                 " FROM ${DatabaseHelper.NOME_TABELA_TAREFAS};"
 
-        val cursor = leitura.rawQuery(sql,null)
+        val cursor = leitura.rawQuery(sql, null)
 
         val indiceId = cursor.getColumnIndex(DatabaseHelper.ID_TAREFA)
         val indiceDescricao = cursor.getColumnIndex(DatabaseHelper.ID_DESCRICAO)
         val indiceData = cursor.getColumnIndex(DatabaseHelper.DATA_CADASTRO)
 
-        while(cursor.moveToNext()){
+        while (cursor.moveToNext()) {
 
             val idTarefa = cursor.getInt(indiceId)
             val descricao = cursor.getString(indiceDescricao)
@@ -60,7 +76,7 @@ class TarefaDAO(context : Context) : ITarefaDAO {
 
 
             listaTarefas.add(
-                Tarefa(idTarefa,descricao,data)
+                Tarefa(idTarefa, descricao, data)
             )
 
 
