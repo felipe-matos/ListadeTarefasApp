@@ -31,7 +31,25 @@ class TarefaDAO(context : Context) : ITarefaDAO {
     }
 
     override fun atualizar(tarefa: Tarefa): Boolean {
-        TODO("Not yet implemented")
+
+        val args = arrayOf(tarefa.idTarefa.toString())
+        val conteudo = ContentValues()
+        conteudo.put("${DatabaseHelper.ID_DESCRICAO}",tarefa.descricao)
+
+        try {
+            escrita.update(
+                DatabaseHelper.NOME_TABELA_TAREFAS,
+                conteudo,
+                "${DatabaseHelper.ID_TAREFA} = ?",
+                args
+            )
+            Log.i("info_db", "Sucesso ao atualizar tarefa ")
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Log.i("info_db", "Error ao atualizar tarefa ")
+            return false
+        }
+        return true
     }
 
     override fun remover(idTarefa: Int): Boolean {
