@@ -1,10 +1,10 @@
+## Lista de Tarefas App
 
 Este é um aplicativo simples de lista de tarefas para Android desenvolvido em Kotlin, utilizando SQLite para armazenamento de dados.
 
 ## Funcionalidades
 
 - Adicionar, editar e excluir tarefas.
-- Marcar tarefas como concluídas.
 - Armazenamento de dados local usando SQLite.
 - Interface de usuário intuitiva e amigável.
 
