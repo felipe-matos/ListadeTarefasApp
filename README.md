@@ -14,3 +14,8 @@ Este é um aplicativo simples de lista de tarefas para Android desenvolvido em K
 
 
 ![Screenshot_20240117_090233](https://github.com/felipe-matos/ListadeTarefasApp/assets/70587403/67f8660d-bdc0-4a75-a32d-e078b30d4663)
+
+# Arquitetura e Tecnologias
+- Kotlin
+- Android
+- SQLite 
