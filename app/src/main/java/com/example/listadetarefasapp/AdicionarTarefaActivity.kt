@@ -46,6 +46,7 @@ class AdicionarTarefaActivity : AppCompatActivity() {
            }
     }
 
+    //Atualizando - OK
     private fun editar(tarefa: Tarefa) {
 
         val descricao = binding.editTarefa.text.toString()
