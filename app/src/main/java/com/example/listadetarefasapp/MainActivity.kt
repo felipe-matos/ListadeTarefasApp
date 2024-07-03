@@ -25,7 +25,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
-
         binding.fabAdicionar.setOnClickListener {
             val intent =  Intent(this,AdicionarTarefaActivity::class.java)
             startActivity(intent)
@@ -36,7 +35,6 @@ class MainActivity : AppCompatActivity() {
             {id-> confirmarExcluir(id) },
             {tarefa -> editar(tarefa) }
         )
-
         binding.rvTarefas.adapter = tarefaAdapter
         binding.rvTarefas.layoutManager =LinearLayoutManager(this)
 
@@ -61,11 +59,18 @@ class MainActivity : AppCompatActivity() {
             _,_,->
 
             val tarefaDAO = TarefaDAO(this)
+
             if(tarefaDAO.remover(id)){
                 atualizarListaTarefas()
-                Toast.makeText(this, "Sucesso ao remover a tarefa", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,
+                    "Sucesso ao remover a tarefa",
+                    Toast.LENGTH_SHORT)
+                    .show()
             }else{
-                Toast.makeText(this, "Error ao remover a tarefa", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,
+                    "Error ao remover a tarefa",
+                    Toast.LENGTH_SHORT)
+                    .show()
 
             }
         }
@@ -87,8 +92,6 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         atualizarListaTarefas()
-
-
 
     }
 

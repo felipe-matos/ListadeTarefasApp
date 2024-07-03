@@ -6,24 +6,24 @@ import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
 
 class DatabaseHelper(context : Context): SQLiteOpenHelper(
-        context , NOME_BANCO_DADOS , null , 1
+        context , NOME_BANCO_DADOS , null , VERSAO
 ) {
 
     companion object{
         const val NOME_BANCO_DADOS = "ListaTarefas.db"
         const val  VERSAO = 1
         const val  NOME_TABELA_TAREFAS = "tarefas"
-        const val  ID_TAREFA = "id_tarefas"
-        const val  ID_DESCRICAO = "descricao"
-        const val  DATA_CADASTRO = "data_cadastro"
+        const val  COLUNA_ID_TAREFA = "id_tarefas"
+        const val  COLUNA_ID_DESCRICAO = "descricao"
+        const val  COLUNA_DATA_CADASTRO = "data_cadastro"
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
 
         val sql = "CREATE TABLE IF NOT EXISTS $NOME_TABELA_TAREFAS (" +
-                "$ID_TAREFA INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT," +
-                "$ID_DESCRICAO VARCHAR (70)," +
-                "$DATA_CADASTRO DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP" +
+                "$COLUNA_ID_TAREFA INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT," +
+                "$COLUNA_ID_DESCRICAO VARCHAR (70)," +
+                "$COLUNA_DATA_CADASTRO DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP" +
                 ");"
 
         try {

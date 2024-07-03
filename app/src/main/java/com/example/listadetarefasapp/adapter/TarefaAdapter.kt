@@ -44,13 +44,15 @@ class TarefaAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TarefaViewHolder {
+
+        val layoutInflater = LayoutInflater.from(parent.context)
         val itemTarefaBinding = ItemTarefaBinding.inflate(
-            LayoutInflater.from(parent.context), parent, false
+            layoutInflater, parent, false
         )
         return TarefaViewHolder(itemTarefaBinding)
     }
 
-    override fun onBindViewHolder(holder: TarefaViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: TarefaAdapter.TarefaViewHolder, position: Int) {
         val tarefa = listaTarefas[position]
         holder.bind(tarefa)
     }

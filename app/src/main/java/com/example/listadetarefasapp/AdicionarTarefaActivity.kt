@@ -20,13 +20,12 @@ class AdicionarTarefaActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         //Recuperar tarefa passada
-        val tarefa:Tarefa? = null
+        var tarefa:Tarefa? = null
         val bundle = intent.extras
         if(bundle != null ){
-            val tarefa = bundle.getSerializable("tarefa") as Tarefa
+            tarefa = bundle.getSerializable("tarefa") as Tarefa
             binding.editTarefa.setText(tarefa.descricao)
         }
-
 
         binding.btnSalvar.setOnClickListener {
 
@@ -37,7 +36,6 @@ class AdicionarTarefaActivity : AppCompatActivity() {
              }else{
                  salvar()
              }
-
            }else{
                Toast.makeText(this,
                    "Preencha um tarefa",
@@ -46,47 +44,40 @@ class AdicionarTarefaActivity : AppCompatActivity() {
            }
 
            }
-
-
     }
 
     private fun editar(tarefa: Tarefa) {
 
         val descricao = binding.editTarefa.text.toString()
         val tarefaAtualizar = Tarefa(
-            tarefa.idTarefa,descricao,"default"
+            tarefa.idTarefa, descricao, "default"
         )
-
         val tarefaDAO = TarefaDAO(this)
 
-        if(tarefaDAO.atualizar(tarefaAtualizar)){
+        if( tarefaDAO.atualizar( tarefaAtualizar ) ){
             Toast.makeText(
                 this,
                 "Tarefa atualizada com sucesso",
                 Toast.LENGTH_SHORT
-            )
-                .show()
+            ).show()
             finish()
         }
 
     }
 
     private fun salvar() {
+
         val descricao = binding.editTarefa.text.toString()
         val tarefa = Tarefa(
-            -1,
-            descricao,
-            dataCadastro = "Default"
+            -1, descricao, "default"
         )
-
         val tarefaDAO = TarefaDAO(this)
         if (tarefaDAO.salvar(tarefa)) {
             Toast.makeText(
                 this,
                 "Tarefa cadastrada com sucesso",
                 Toast.LENGTH_SHORT
-            )
-                .show()
+            ).show()
             finish()
 
         }
